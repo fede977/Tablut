@@ -43,7 +43,16 @@
     </target>
 
     <target name="lastminute">
-
+        <java classname="it.unibo.ai.didattica.competition.tablut.lastminute.client.LastMinuteClient" fork="true">
+            <arg value="${arg0}"/>
+            <arg value="${arg1}"/>
+            <arg value="${arg2}"/>
+            <classpath>
+                <pathelement location="lib/gson-2.2.2.jar"/>
+                <pathelement location="lib/aima-core.jar"/>
+                <pathelement location="build"/>
+            </classpath>
+        </java>
     </target>
 
 

@@ -7,11 +7,11 @@ import it.unibo.ai.didattica.competition.tablut.lastminute.game.Game;
 public class AlphaBetaSearch<S,A,P> implements AdversarialSearch<S,A>{
 
     public final static String METRICS_NODE_EXPANDED = "nodesExpanded";
-    Game<S,A,P> game;
+    Game game;
     private Metrics metrics = new Metrics();
     private int depth;
 
-    public AlphaBetaSearch(Game<S,A,P> game, int depth){
+    public AlphaBetaSearch(Game game, int depth){
         this.game = game;
         this.depth = depth;
     }
@@ -20,7 +20,7 @@ public class AlphaBetaSearch<S,A,P> implements AdversarialSearch<S,A>{
     public A makeDecision(S state){
         metrics = new Metrics();
         A result = null;
-        int depth = this.depth();
+        int depth = this.depth;
         double resultValue = Double.NEGATIVE_INFINITY;
         P player = game.GetPayer(state);
         for (A action: game.getActions(state)){
@@ -51,7 +51,6 @@ public class AlphaBetaSearch<S,A,P> implements AdversarialSearch<S,A>{
             return currentValue;
         }
         return 0;
-        }
     }
 
     public double minValue(S state, P player, double alpha, double beta, int depth){
