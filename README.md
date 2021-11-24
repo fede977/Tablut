@@ -46,10 +46,10 @@ ant server
 To start the game, run the `white` player with this command:
 
 ```
-ant failureState -Darg0=WHITE -Darg1=1 -Darg2=localhost
+ant lastMinute -Darg0=WHITE -Darg1=1 -Darg2=localhost
 ```
 And then run the `black` player:
 ```
-ant failureState -Darg0=BLACK -Darg1=1 -Darg2=localhost
+ant lastMinute -Darg0=BLACK -Darg1=1 -Darg2=localhost
 ```
 To run other classes, change the `build.xml` file and re-compile.
