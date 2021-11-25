@@ -569,85 +569,87 @@ public class MyStateTablut {
     }
 
     public List<XYOld> getAllMoves(){
-        if(this.getTurn().equals(Turn.WHITE)){
-            List<XYOld> whiteMoves = new ArrayList<>();
-            List<XYOld> whitePosition = new ArrayList<>();
+        if(this.getTurn().equals(Turn.WHITE)) {
+            List<XYOld> whiteLegalMoves = new ArrayList<>();
+            List<XYOld> whitePositions = new ArrayList<>();
             XYOld buf;
-            for(int i = 0; i< this.getBoard().length; i++){
-                for (int j =0;j < this.getBoard().length;j++){
-                    if(this.getPawn(i,j).equals(Pawn.WHITE) || this.getPawn(i,j).equals(Pawn.KING)){
-                        buf = new XYOld(i,j,new int[]{i,j}, false);
-                        whitePosition.add(buf);
+            for (int i = 0; i < this.getBoard().length; i++) {
+                for (int j = 0; j < this.getBoard().length; j++) {
+                    if (this.getPawn(i, j).equals(Pawn.WHITE) || this.getPawn(i, j).equals(Pawn.KING))  {
+                        buf = new XYOld(i, j, new int[]{i, j}, false);
+                        whitePositions.add(buf);
                     }
                 }
             }
 
-            //For each position oof white try all possible moves
-            for(XYOld white: whitePosition){
-                //move vertically
-                for(int j = 0; j < this.getBoard().length;j++){
+            // for each (i, j) in white position, try every possible move
+            for (XYOld white : whitePositions) {
+                // move each pawn vertically
+                for (int j = 0; j < this.getBoard().length; j++) {
                     //UP
-                    if(((white.getY()-j)>=0) && this.getPawn(white.getX(),white.getY()-j)== Pawn.EMPTY
-                            && (this.getArea(white.getX(), white.getY()-j) !=  Area.CAMPS)
-                            && (this.getArea(white.getX(), white.getY()-j) !=  Area.CASTLE)){
+                    if(((white.getY() - j) >= 0) && this.getPawn(white.getX(), white.getY() - j) == Pawn.EMPTY
+                            && (this.getArea(white.getX(), white.getY() - j) != Area.CAMPS)
+                            && (this.getArea(white.getX(), white.getY() - j) != Area.CASTLE)) {
                         int emptyPawns = 0;
-                        for (int f = white.getY()-1; f>white.getY(); f--){
-                            if( this.getPawn(white.getX(),f) != Pawn.EMPTY || this.getArea(white.getX(), f) == Area.CAMPS || this.getArea(white.getX(), f) == Area.CASTLE){
+                        for (int f = white.getY() - 1; f > white.getY() - j; f--) {
+                            if(this.getPawn(white.getX(), f) != Pawn.EMPTY || this.getArea(white.getX(), f) == Area.CAMPS || this.getArea(white.getX(), f) == Area.CASTLE) {
                                 emptyPawns++;
                             }
                         }
-                        if(emptyPawns==0){
-                            whiteMoves.add(new XYOld(white.getX(),white.getY()-j, new int[]{white.getX(),white.getY()},false));
+                        if(emptyPawns == 0) {
+                            whiteLegalMoves.add(new XYOld(white.getX(), white.getY() - j, new int[]{white.getX(), white.getY()}, false));
                         }
                     }
                     //DOWN
                     if(((white.getY() + j) < this.getBoard().length) && this.getPawn(white.getX(), white.getY() + j) == Pawn.EMPTY
                             && (this.getArea(white.getX(), white.getY() + j) != Area.CAMPS)
                             && (this.getArea(white.getX(), white.getY() + j) != Area.CASTLE)) {
-                        int emptyPawns = 0;
+                        int howManyEmptyPawns = 0;
                         for (int f = white.getY() + 1; f < white.getY() + j; f++) {
                             if(this.getPawn(white.getX(), f) != Pawn.EMPTY || this.getArea(white.getX(), f) == Area.CAMPS || this.getArea(white.getX(), f) == Area.CASTLE) {
-                                emptyPawns++;
+                                howManyEmptyPawns++;
                             }
                         }
-                        if(emptyPawns == 0) {
-                            whiteMoves.add(new XYOld(white.getX(), white.getY() + j, new int[]{white.getX(), white.getY()}, false));
+                        if(howManyEmptyPawns == 0) {
+                            whiteLegalMoves.add(new XYOld(white.getX(), white.getY() + j, new int[]{white.getX(), white.getY()}, false));
                         }
                     }
                 }
-                //move horizontally
+                // move each pawn horizontally
                 for (int i = 0; i < this.getBoard().length; i++) {
-                    //LEFT
+                    // (x - i, y) LEFT
                     if(((white.getX() - i) >= 0) && this.getPawn(white.getX() - i, white.getY()) == Pawn.EMPTY
                             && (this.getArea(white.getX() - i, white.getY()) != Area.CAMPS)
                             && (this.getArea(white.getX() - i, white.getY()) != Area.CASTLE)) {
-                        int emptyPawns = 0;
+                        int howManyEmptyPawns = 0;
                         for (int f = white.getX() - 1; f > white.getX() - i; f--) {
                             if(this.getPawn(f, white.getY()) != Pawn.EMPTY || this.getArea(f, white.getY()) == Area.CAMPS || this.getArea(f, white.getY()) == Area.CASTLE) {
-                                emptyPawns++;
+                                howManyEmptyPawns++;
                             }
                         }
-                        if(emptyPawns == 0) {
-                            whiteMoves.add(new XYOld(white.getX() - i, white.getY(), new int[]{white.getX(), white.getY()}, false));
+                        if(howManyEmptyPawns == 0) {
+                            whiteLegalMoves.add(new XYOld(white.getX() - i, white.getY(), new int[]{white.getX(), white.getY()}, false));
                         }
                     }
-                    //RIGHT
+                    // (x + i, y) RIGHT
                     if(((white.getX() + i) < this.getBoard().length) && this.getPawn(white.getX() + i, white.getY()) == Pawn.EMPTY
                             && (this.getArea(white.getX() + i, white.getY()) != Area.CAMPS)
                             && (this.getArea(white.getX() + i, white.getY()) != Area.CASTLE)) {
-                        int emptyPawns = 0;
+                        int howManyEmptyPawns = 0;
                         for (int f = white.getX() + 1; f < white.getX() + i; f++) {
                             if(this.getPawn(f, white.getY()) != Pawn.EMPTY || this.getArea(f, white.getY()) == Area.CAMPS || this.getArea(f, white.getY()) == Area.CASTLE) {
-                                emptyPawns++;
+                                howManyEmptyPawns++;
                             }
                         }
-                        if(emptyPawns == 0) {
-                            whiteMoves.add(new XYOld(white.getX() + i, white.getY(), new int[]{white.getX(), white.getY()}, false));
+                        if(howManyEmptyPawns == 0) {
+                            whiteLegalMoves.add(new XYOld(white.getX() + i, white.getY(), new int[]{white.getX(), white.getY()}, false));
                         }
                     }
                 }
+
             }
-            return whiteMoves;
+
+            return whiteLegalMoves;
         } else {
             List<XYOld> blackMoves = new ArrayList<>();
             List<XYOld> blacks = new ArrayList<>();
@@ -659,7 +661,7 @@ public class MyStateTablut {
                             buf = new XYOld(i, j, new int[]{i, j}, false);
                             blacks.add(buf);
                         } else if (this.getArea(i, j).equalsArea(Area.CAMPS.toString()) || this.getArea(i, j).equalsArea(Area.NORMAL.toString()) || this.getArea(i, j).equalsArea(Area.ESCAPES.toString())) {
-                            buf = new XYOld(i, j, new int[]{i, j}, true); // if a black is no more in a camp, he cannot enter in any camp anymore
+                            buf = new XYOld(i, j, new int[]{i, j}, true); // if a black is no more in a camp, he cannot enter in any camp
                             blacks.add(buf);
                         }
                     }

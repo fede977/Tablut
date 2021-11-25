@@ -51,7 +51,7 @@ public abstract class TablutClient implements Runnable{
         if(player.toLowerCase().equals("white")){
             this.player = State.Turn.WHITE;
             port = Configuration.whitePort;
-        }else if(player.toLowerCase().equals("white")){
+        }else if(player.toLowerCase().equals("black")){
             this.player = State.Turn.BLACK;
             port = Configuration.blackPort;
         }else{
@@ -90,7 +90,7 @@ public abstract class TablutClient implements Runnable{
 
     /**write action to the server**/
     public void writeAction(Action action) throws IOException, ClassNotFoundException {
-        StreamUtils.writeString(this.output, this.gson.toJson(this.name));
+        StreamUtils.writeString(this.output, this.gson.toJson(action));
     }
 
     /**
