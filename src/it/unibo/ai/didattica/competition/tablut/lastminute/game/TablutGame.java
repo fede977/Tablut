@@ -4,26 +4,26 @@ import it.unibo.ai.didattica.competition.tablut.domain.State;
 
 import java.util.List;
 
-public class TablutGame implements Game<MyStateTablut, XYOld, State.Turn> {
+public class TablutGame implements Game<LMStateTablut, Positions, State.Turn> {
 
-    private MyStateTablut initialState;
+    private LMStateTablut initialState;
 
     public TablutGame(int depth){
-        this.initialState = new MyStateTablut(depth);
+        this.initialState = new LMStateTablut(depth);
     }
 
     @Override
-    public List<XYOld> getActions(MyStateTablut state){
+    public List<Positions> getActions(LMStateTablut state){
         return state.getAllMoves();
     }
 
     @Override
-    public MyStateTablut getInitialState(){
+    public LMStateTablut getInitialState(){
         return this.initialState;
     }
 
     @Override
-    public State.Turn getPlayer(MyStateTablut state){
+    public State.Turn getPlayer(LMStateTablut state){
         return state.getTurn();
     }
 
@@ -33,22 +33,22 @@ public class TablutGame implements Game<MyStateTablut, XYOld, State.Turn> {
     }
 
     @Override
-    public int getCurrentDepth(MyStateTablut state){
+    public int getCurrentDepth(LMStateTablut state){
         return state.getCurrentDepth();
     }
 
     @Override
-    public void setCurrentDepth(MyStateTablut state, int depth){
+    public void setCurrentDepth(LMStateTablut state, int depth){
         state.setCurrentDepth(depth);
     }
 
     @Override
-    public boolean isTerminal(MyStateTablut state){
+    public boolean isTerminal(LMStateTablut state){
         return state.getCurrentDepth()==0;
     }
 
     @Override
-    public double getUtility(MyStateTablut state, State.Turn player) {
+    public double getUtility(LMStateTablut state, State.Turn player) {
         double result=0;
         if(player.equals(State.Turn.WHITE)){
             result += 200000*state.isKingEscaped()
@@ -78,8 +78,8 @@ public class TablutGame implements Game<MyStateTablut, XYOld, State.Turn> {
 
 
     @Override
-    public MyStateTablut getResult(MyStateTablut state, XYOld action) {
-        MyStateTablut result = state.clone();
+    public LMStateTablut getResult(LMStateTablut state, Positions action) {
+        LMStateTablut result = state.clone();
         result.applyMove(action);
         return result;
     }

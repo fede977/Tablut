@@ -2,9 +2,9 @@ package it.unibo.ai.didattica.competition.tablut.lastminute.client;
 
 import it.unibo.ai.didattica.competition.tablut.domain.*;
 import it.unibo.ai.didattica.competition.tablut.lastminute.algorithms.AlphaBetaSearch;
-import it.unibo.ai.didattica.competition.tablut.lastminute.game.MyStateTablut;
+import it.unibo.ai.didattica.competition.tablut.lastminute.game.LMStateTablut;
+import it.unibo.ai.didattica.competition.tablut.lastminute.game.Positions;
 import it.unibo.ai.didattica.competition.tablut.lastminute.game.TablutGame;
-import it.unibo.ai.didattica.competition.tablut.lastminute.game.XYOld;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -13,7 +13,7 @@ public class LastMinuteClient extends TablutClient {
 
     private int depth = 4;
     private TablutGame tablutGame = new TablutGame(this.depth);
-    private AlphaBetaSearch<MyStateTablut, XYOld, State.Turn> abSearch = new AlphaBetaSearch<MyStateTablut, XYOld, State.Turn>(this.tablutGame,this.depth);
+    private AlphaBetaSearch<LMStateTablut, Positions, State.Turn> abSearch = new AlphaBetaSearch<LMStateTablut, Positions, State.Turn>(this.tablutGame,this.depth);
 
     public LastMinuteClient(String player, String name, int timeout, String ipAddress) throws IOException, UnknownHostException {
         super(player, name, timeout, ipAddress);
@@ -30,8 +30,8 @@ public class LastMinuteClient extends TablutClient {
         Game rules = null;
         State state = new StateTablut();
         state.setTurn(State.Turn.WHITE);
-        rules = new GameAshtonTablut(99,0,"garbage","fake","fake");
-        System.out.println("Player: " + this.getPlayer().toString() + "!");
+        rules = new GameAshtonTablut(99,0,"garbage","white","black");
+        System.out.println("Player: " + this.getPlayer().toString() + "!\n");
 
         while (true) {
             try {
@@ -41,7 +41,7 @@ public class LastMinuteClient extends TablutClient {
             }
 
             state = this.getCurrentState();
-            MyStateTablut s = new MyStateTablut(4).stateAdapter(this.getCurrentState());
+            LMStateTablut s = new LMStateTablut(4).stateAdapter(this.getCurrentState());
             s.printBoard();
             try {
                 Thread.sleep(1000);
@@ -52,7 +52,7 @@ public class LastMinuteClient extends TablutClient {
                 if (state.getTurn().equals(StateTablut.Turn.WHITE)) {
 
                     Action a = null;
-                    XYOld tempA = this.abSearch.makeDecision(s);
+                    Positions tempA = this.abSearch.makeDecision(s);
                     String start = state.getBox(tempA.getOld()[0], tempA.getOld()[1]);
                     String finish = state.getBox(tempA.getX(), tempA.getY());
                     try {
@@ -61,7 +61,7 @@ public class LastMinuteClient extends TablutClient {
                         e.printStackTrace();
                     }
 
-                    System.out.println("Move: " + a.toString());
+                    System.out.println("Move: " + a.toString()+"\n");
                     try {
                         this.writeAction(a);
                     } catch (ClassNotFoundException | IOException e) {
@@ -71,7 +71,7 @@ public class LastMinuteClient extends TablutClient {
                 if (state.getTurn().equals(StateTablut.Turn.BLACK)) {
 
                     Action a = null;
-                    XYOld tempA = this.abSearch.makeDecision(s);
+                    Positions tempA = this.abSearch.makeDecision(s);
                     String start = state.getBox(tempA.getOld()[0], tempA.getOld()[1]);
                     String finish = state.getBox(tempA.getX(), tempA.getY());
                     try {
@@ -80,7 +80,7 @@ public class LastMinuteClient extends TablutClient {
                         e.printStackTrace();
                     }
 
-                    System.out.println("Move: " + a.toString());
+                    System.out.println("Move: " + a.toString()+"\n");
                     try {
                         this.writeAction(a);
                     } catch (ClassNotFoundException | IOException e) {
@@ -91,7 +91,7 @@ public class LastMinuteClient extends TablutClient {
         }
     }
 
-    public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         String role = "";
         String name = "LastMinute";
         int timeout = 0;

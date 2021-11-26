@@ -1,13 +1,13 @@
 package it.unibo.ai.didattica.competition.tablut.lastminute.game;
 
-public class XYOld {
+public class Positions {
     private int x;
     private int y;
     private int[] old;
     boolean leftTheCamp;
 
 
-    public XYOld(int x, int y, int[] old, boolean leftTheCamp){
+    public Positions(int x, int y, int[] old, boolean leftTheCamp){
         this.x = x;
         this.y = y;
         this.old = old;
@@ -34,7 +34,7 @@ public class XYOld {
     @Override
     public boolean equals(Object o){
         if(null != o && getClass() == o.getClass()){
-            XYOld loc = (XYOld) o;
+            Positions loc = (Positions) o;
             return x == loc.getX() && y == loc.getX();
         }
         return false;
