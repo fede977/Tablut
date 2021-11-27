@@ -24,7 +24,9 @@ try {
         ProcessBuilder processBuilder = new ProcessBuilder();
 		processBuilder.command("sh", "-c", arguments);
         Process tablut_game = processBuilder.start(); 
-		System.out.print("The game is aboiut to start...");
+		System.out.print("Player selected:" + args[0] + "\n");
+        System.out.print("Host:" + args[1] + "\n");
+        System.out.print("Your game is about to start...\n");
 
     } catch (Exception e) { 
         e.printStackTrace();
