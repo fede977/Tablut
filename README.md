@@ -1,5 +1,5 @@
 # TablutAI
-AI Player for the University of Bologna Competition.
+AI Player for the University of Bologna Competition by team lastminute.
 
 #Description
 White and Black players have been implemented using MinMax algorithm with AlphaBeta Pruning and the max depth has been set to 4.
@@ -53,3 +53,10 @@ And then run the `black` player:
 ant lastminute -Dcolor=BLACK -Dtime=1 -Dserver=localhost
 ```
 To run other classes, change the `build.xml` file and re-compile.
+
+## Start the Script
+A faster way to start the game is to go into the project folder as shown before and write the command:
+
+java lastminute 'player_color' 'host'
+
+```
