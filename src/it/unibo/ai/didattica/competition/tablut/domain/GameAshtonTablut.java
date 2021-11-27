@@ -743,7 +743,6 @@ public class GameAshtonTablut implements Game {
 		drawConditions.clear();
 	}
 	
-
 	@Override
 	public void endGame(State state) {
 		this.loggGame.fine("Stato:\n"+state.toString());
