@@ -1,4 +1,4 @@
-# TablutAI
+# LastMinute Tablut
 AI Player for the University of Bologna Competition by team lastminute.
 
 #Description
