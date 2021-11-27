@@ -19,6 +19,7 @@ public class LastMinuteClient extends TablutClient {
         super(player, name, timeout, ipAddress);
     }
 
+    //run
     @Override
     public void run() {
 
