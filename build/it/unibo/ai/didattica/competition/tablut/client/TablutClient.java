@@ -85,15 +85,15 @@ public abstract class TablutClient implements Runnable {
 	}
 
 	/**
-	 * Creates a new player initializing the sockets and the logger. The server
-	 * is supposed to be communicating on the same machine of this player.
+	 * Creates new player initializing sockets and logger.
+	 * Server must be on the same machine in order to work.
 	 * 
 	 * @param player
-	 *            The role of the player (black or white)
+	 *            player's role
 	 * @param name
-	 *            The name of the player
+	 *            player's name
 	 * @param timeout
-	 *            The timeout that will be taken into account (in seconds)
+	 *          	(seconds)
 	 * @throws UnknownHostException
 	 * @throws IOException
 	 */
@@ -102,9 +102,8 @@ public abstract class TablutClient implements Runnable {
 	}
 
 	/**
-	 * Creates a new player initializing the sockets and the logger. Timeout is
-	 * set to be 60 seconds. The server is supposed to be communicating on the
-	 * same machine of this player.
+	 * Creates new player initializing sockets and logs, but timeout is set by default to be 60 seconds.
+	 * Server must be running on the same machine as the player
 	 * 
 	 * @param player
 	 *            The role of the player (black or white)
@@ -118,8 +117,8 @@ public abstract class TablutClient implements Runnable {
 	}
 
 	/**
-	 * Creates a new player initializing the sockets and the logger. Timeout is
-	 * set to be 60 seconds.
+	 * Creates a new player initializing the sockets and the logger, timeout set to 60 seconds
+	 * but ipAddress is given by the console.
 	 * 
 	 * @param player
 	 *            The role of the player (black or white)
