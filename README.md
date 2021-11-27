@@ -46,10 +46,10 @@ ant server
 To start the game, run the `white` player with this command:
 
 ```
-ant lastminute -Darg0=WHITE -Darg1=1 -Darg2=localhost
+ant lastminute -Dcolor=WHITE -Dtime=1 -Dserver=localhost
 ```
 And then run the `black` player:
 ```
-ant lastminute -Darg0=BLACK -Darg1=1 -Darg2=localhost
+ant lastminute -Dcolor=BLACK -Dtime=1 -Dserver=localhost
 ```
 To run other classes, change the `build.xml` file and re-compile.
