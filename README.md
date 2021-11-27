@@ -56,7 +56,6 @@ To run other classes, change the `build.xml` file and re-compile.
 
 ## Start the Script
 A faster way to start the game is to go into the project folder as shown before and write the command:
-...
 
-java lastminute 'player_color' 'host'
 ```
+java lastminute 'player_color' 'host'
