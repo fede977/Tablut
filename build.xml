@@ -77,9 +77,9 @@
 
     <target name="lastminute">
         <java classname="it.unibo.ai.didattica.competition.tablut.lastminute.client.LastMinuteClient" fork="true">
-            <arg value="${arg0}"/>
-            <arg value="${arg1}"/>
-            <arg value="${arg2}"/>
+            <arg value="${color}"/>
+            <arg value="${time}"/>
+            <arg value="${server}"/>
             <classpath>
                 <pathelement location="lib/gson-2.2.2.jar"/>
                 <pathelement location="build"/>

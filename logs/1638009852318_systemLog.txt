@@ -1,0 +1,14 @@
+Nov 27, 2021 11:44:12 AM it.unibo.ai.didattica.competition.tablut.server.Server run
+FINE: Accensione server
+Nov 27, 2021 11:44:12 AM it.unibo.ai.didattica.competition.tablut.server.Server run
+FINE: Partita di Tablut
+Nov 27, 2021 11:44:12 AM it.unibo.ai.didattica.competition.tablut.server.Server run
+FINE: Waiting for white connection..
+Nov 27, 2021 11:44:17 AM it.unibo.ai.didattica.competition.tablut.server.Server run
+FINE: White player connected
+Nov 27, 2021 11:44:17 AM it.unibo.ai.didattica.competition.tablut.server.Server run
+FINE: Lettura nome player bianco in corso..
+Nov 27, 2021 11:44:17 AM it.unibo.ai.didattica.competition.tablut.server.Server run
+FINE: White player name:	LastMinute
+Nov 27, 2021 11:44:17 AM it.unibo.ai.didattica.competition.tablut.server.Server run
+FINE: Waiting for Black connection..
